@@ -1,0 +1,546 @@
+extends bib
+
+#Common sections {{{1
+
+snippet preuni "preamble-project" b
+\documentclass{article}
+
+% Packages:%{{{
+\usepackage{caption}
+\usepackage{mdframed}
+\usepackage[bottom]{footmisc} %footnotes at bottom of page
+\usepackage{titlesec} %adjust paragraphs
+\usepackage[nohead]{geometry} %[a4paper,landscape]
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix} %\appendix \appendixpage
+\usepackage{bm} %\bm{1} bold font 1
+\usepackage{bbm} %\mathbbm{1} bold font 2
+\usepackage{booktabs} % includes toprule which is used in statsmodels/pandas to_latex commands
+\usepackage{color}
+\usepackage{enumitem} % allows to resume list
+\usepackage{float} %\begin{figure}[placement specifier] [H]-def. here,[h]-about here
+\usepackage{geometry} %[a4paper,landscape]
+\usepackage{graphicx} %\begin{figure}\includegraphics[width=110mm]{name.jpg}
+\usepackage{ifthen} % get \ifthenelse command
+\usepackage{longtable} % only used in highfreq/summary.tex
+\usepackage{natbib}
+\usepackage{setspace} %\onehalfspacing etc.
+\usepackage{subcaption} % allows subfigure
+\usepackage{tikz}
+\usepackage{url} %\url{}
+\usepackage{verbatim} %\begin{comment}
+
+
+% end packages
+\usepackage{hyperref}
+\usepackage[noabbrev]{cleveref} %\cref, also loaded in environment
+
+% Packages:%}}}
+
+% Theorem definitions:%{{{
+
+% Standard style:
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}{Assumption} % decided want different counter for this normally
+\newtheorem{remark}[theorem]{Remark}
+
+% Definition Style:
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+% \newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{exercise}[theorem]{Exercise}
+%}}}
+
+% Formatting:%{{{
+%General Spacing
+\newcommand{\mar}{0.9in} %for geometry command
+% needs geometry package
+\geometry{verbose,letterpaper,tmargin=\mar,bmargin=\mar,lmargin=\mar,rmargin=\mar,headheight=0in,headsep=0in,footskip=0.25in}
+
+% \def\bodyspacing{\singlespacing}
+\def\bodyspacing{\onehalfspacing}
+% \def\bodyspacing{\doublespacing}
+\bodyspacing
+
+\usepackage{palatino}
+\usepackage[T1]{fontenc} % I think this is necessary for accents with palatino
+
+% Paragraphs:
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{10pt plus 1pt minus 1pt}
+
+\hyphenpenalty=750
+
+\bibliographystyle{ecta}
+
+%Date stuff:
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH] \THEYEAR}
+
+
+% % removing brackets around cleveref equations
+% % see: https://tex.stackexchange.com/questions/228448/removing-the-brackets-around-equation-numbering
+\creflabelformat{equation}{#2#1#3}
+% Formatting:%}}}
+
+% Misc:%{{{
+\synctex=1 % makes it easier to read pdfs from vim (text editor)
+% Misc:%}}}
+
+% Boston Fed:%{{{
+\def\cdcfedpaperformatting{0}
+\ifthenelse{\equal{\cdcfedpaperformatting}{1}}{
+    \def\percent{ percent }
+    \def\percentnospace{ percent}
+    \def\percentagepoints{ percentage points }
+    \def\percentagepointsperiod{ percentage points. }
+
+    % \cref{eq1,eq2} yields equation 1, and 2
+    \newcommand{\creflastconjunction}{, and\nobreakspace}
+    \bibliographystyle{latex-config_sh/mybst/bostonfed}
+}{
+    \def\percent{\% }
+    \def\percentnospace{\%}
+    \def\percentagepoints{p.p. }
+    \def\percentagepointsperiod{p.p. }
+}
+
+% Boston Fed:%}}}
+
+
+\begin{document}
+
+\title{$1}
+\author{Chris Cotton}
+\date{\monthyeardate\today}
+\maketitle
+
+$0
+
+% \bibliography{latex-config_sh/standard.bib}
+\end{document}
+endsnippet
+
+snippet prerev "preamble-simple" b
+% TEX_REVIEW_PREAMBLE_START.%{{{
+\documentclass{article}
+\def\cdcprefulloptions{1}
+\input{\string~/Dropbox/persdrop/latex-config_sh/preamble.tex}
+% TEX_REVIEW_PREAMBLE_END.%}}}
+% TEX_REVIEW_TITLE_START.%{{{
+\begin{document}
+\title{${1:title}}
+\author{Chris Cotton}
+\maketitle
+% TEX_REVIEW_TITLE_END.%}}}
+
+$0
+
+
+% TEX_REVIEW_BIB_START.%{{{1
+% \bibliography{\string~/Dropbox/persdrop/latex-config_sh/standard}
+\end{document}
+% TEX_REVIEW_BIB_END.%{{{1
+endsnippet
+
+snippet presimp "preamble-simple" b
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\title{$1}\maketitle
+${0:${VISUAL}}
+
+
+\end{document}
+endsnippet
+
+snippet prebeam "preamble-beamer" b
+% Preamble:%{{{
+\documentclass{beamer}
+
+% main packages
+\usepackage{amsmath}
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs} % includes toprule which is used in statsmodels/pandas to_latex commands
+\usepackage{comment}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{tikz}
+
+% packages need to load at the end
+\usepackage{hyperref}
+\usepackage[noabbrev]{cleveref} %\cref, also loaded in environment
+
+% basic formatting
+\beamertemplatenavigationsymbolsempty %remove annoying symbols at the bottom of the screen
+\bibliographystyle{aer}
+
+% unused formatting:%{{{
+% STANDARD BLUE
+% \usetheme{Warsaw}
+
+% STANDARD RED
+% theme red
+% \usetheme{CambridgeUS}
+
+
+% CIRCLES at top AND BLUE
+% \usetheme{Boadilla}
+% % add circles
+% \useoutertheme[footline=empty,subsection=false]{miniframes}
+% \useinnertheme{circles}
+% unused formatting:%}}}
+
+\synctex=1 % allows you to open the pdf in the same place as in the text editor
+% Preamble:%}}}
+
+\begin{document}
+\author{Chris Cotton}
+\date{\today}
+\title{${1:title}}\maketitle
+
+$0
+
+\appendix
+% \begin{frame}[allowframebreaks]\frametitle{Bibliography}
+% \bibliography{}
+% \end{frame}
+\end{document}
+endsnippet
+
+snippet title "title" b
+% Titlepage:%{{{1
+\title{
+${1:title}
+}
+\author{Christopher D. Cotton \\\\ Columbia University \thanks{\baselineskip=11pt
+THANKS
+}}
+\date{\today}
+\maketitle
+
+\thispagestyle{empty}
+\begin{abstract}
+\baselineskip=16pt
+ABSTRACT
+
+\end{abstract}
+
+\vspace{120pt}
+\pagebreak
+\addtocounter{page}{-1}
+% Titlepage:%}}}1
+endsnippet
+
+snippet app "appendix" b
+`cat '/home/chris/Dropbox/persdrop/common-section_me/preambles/tex/appendix/0_standard.tex'`
+$0
+endsnippet
+
+snippet pac "Package" b
+\usepackage[${1:options}]{${2:package}}$0
+endsnippet
+
+#Sections {{{1
+snippet sec "Section" b
+\section{${1:${VISUAL}}}
+${0}
+endsnippet
+snippet sec* "Section" b
+\section*{${1:${VISUAL}}}
+${0}
+endsnippet
+snippet sub "Subsection" b
+\subsection{${1:${VISUAL}}}
+${0}
+endsnippet
+snippet sub* "Subsection" b
+\subsection*{${1:${VISUAL}}}
+${0}
+endsnippet
+snippet ssub* "Subsubsection" b
+\subsubsection*{${1:${VISUAL}}}
+${0}
+endsnippet
+snippet ssub "Subsubsection" b
+\subsubsection{${1:${VISUAL}}}
+${0}
+endsnippet
+
+#Environments {{{1
+snippet pmat "pmat" i
+\begin{pmatrix} $1 \end{pmatrix}$0
+endsnippet
+snippet vmat "vmat" i
+\begin{vmatrix} $1 \end{vmatrix}$0
+endsnippet
+snippet b "begin{} / end{}" b
+\begin{${1:something}}
+${2:${VISUAL}}
+\end{$1}
+
+$0
+endsnippet
+snippet eq "begin{} / end{}" b
+\begin{equation}
+${1:${VISUAL}}
+\end{equation}
+$0
+endsnippet
+snippet eq* "begin{} / end{}" b
+\begin{equation*}
+${1:${VISUAL}}
+\end{equation*}
+$0
+endsnippet
+snippet mult "begin{} / end{}" b
+\begin{multline}
+${1:${VISUAL}}
+\end{multline}
+$0
+endsnippet
+snippet mult* "begin{} / end{}" b
+\begin{multline*}
+${1:${VISUAL}}
+\end{multline*}
+$0
+endsnippet
+snippet dmath "begin{} / end{}" b
+\begin{dmath}
+${1:${VISUAL}}
+\end{dmath}
+$0
+endsnippet
+snippet dmath* "begin{} / end{}" b
+\begin{dmath*}
+${1:${VISUAL}}
+\end{dmath*}
+$0
+endsnippet
+snippet align "begin{} / end{}" b
+\begin{align}
+${1:${VISUAL}}
+\end{align}
+$0
+endsnippet
+snippet align* "begin{} / end{}" b
+\begin{align*}
+${1:${VISUAL}}
+\end{align*}
+$0
+endsnippet
+snippet tab "tabular / array environment" b
+\begin{tabular}{${1:lcc}}
+$0
+\end{tabular}
+endsnippet
+snippet table "Table environment" b
+\begin{table}[${1:H}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{${4:t}${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{$4${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+\end{table}
+endsnippet
+snippet cases "begin{} / end{}" b
+\begin{cases}
+${1:${VISUAL}}
+\end{cases}
+$0
+endsnippet
+
+# Figures:
+snippet incgr
+\includegraphics[width=${3:0.8}\linewidth]{${4:name.ext}}
+endsnippet
+snippet fig "Figure environment" b
+\begin{figure}[${2:H}]
+	${3:%}\centering
+	\caption{${4:caption}}
+	\label{fig:${4/(\w+)\.\w+/$1/}}
+	${0:${VISUAL}}
+\end{figure}
+endsnippet
+snippet figgr "Figure environment" b
+\begin{figure}[${2:H}]
+	${3:%}\centering
+	\caption{${4:caption}}
+	\label{fig:${4/(\w+)\.\w+/$1/}}
+	\includegraphics[width=${5:0.8}\linewidth]{${6:name.ext}}
+	${0:${VISUAL}}
+\end{figure}
+endsnippet
+snippet 2fig "Figure environment" b
+\begin{figure}[${2:H}]
+	\centering
+	\begin{minipage}{.49\textwidth}
+		\centering
+		\includegraphics[width=${3:0.9}\linewidth]{${4:name.ext}}
+		\caption{${5:fig:}}
+		\label{fig:${4/(\w+)\.\w+/$1/}}
+	\end{minipage}
+	\begin{minipage}{.49\textwidth}
+		\centering
+		\includegraphics[width=${6:0.9}\linewidth]{${7:name.ext}}
+		\caption{${8:fig:}}
+		\label{fig:${7/(\w+)\.\w+/$1/}}
+	\end{minipage}
+\end{figure}
+endsnippet
+snippet subfig "Figure environment" b
+\begin{figure}[${2:H}]
+	\centering
+	\caption{${3:fig:}}
+	\label{fig:${3/(\w+)\.\w+/$1/}}
+	\begin{subfigure}{.49\textwidth}
+		\centering
+		\includegraphics[width=${4:0.9}\linewidth]{${5:name.ext}}
+		\caption{${6:fig:}}
+		\label{fig:${5/(\w+)\.\w+/$1/}}
+	\end{subfigure}
+	\begin{subfigure}{.49\textwidth}
+		\centering
+		\includegraphics[width=${7:0.9}\linewidth]{${8:name.ext}}
+		\caption{${9:fig:}}
+		\label{fig:${8/(\w+)\.\w+/$1/}}
+	\end{subfigure}
+\end{figure}
+endsnippet
+snippet lst "lst" b
+\lstinputlisting[style=${1:example,appendix}]{$0}
+endsnippet
+
+#Fonts:
+snippet bb "mathbb" i
+\mathbb{${1:${VISUAL}}}$0
+endsnippet
+snippet bbm "mathbb" i
+\mathbbm{${1:${VISUAL}}}$0
+endsnippet
+snippet cal "mathcal" i
+\mathcal{${1:${VISUAL}}}$0
+endsnippet
+
+#Theorems:
+snippet enum "Enumerate" b
+\begin{enumerate}
+	\item ${0:${VISUAL}}
+\end{enumerate}
+endsnippet
+snippet item "Itemize" b
+\begin{itemize}
+	\item ${0:${VISUAL}}
+\end{itemize}
+endsnippet
+snippet it "Individual item" i
+
+\item ${1}
+endsnippet
+snippet def
+\begin{definition}[${1:}]
+${0:${VISUAL}}
+\end{definition}
+endsnippet
+snippet the
+\begin{theorem}[${1:}]
+${0:${VISUAL}}
+\end{theorem}
+endsnippet
+snippet rem
+\begin{remark}[${1:}]
+${0:${VISUAL}}
+\end{remark}
+endsnippet
+snippet exa
+\begin{example}[${1:}]
+${0:${VISUAL}}
+\end{example}
+endsnippet
+snippet exe
+\begin{exercise}[${1:}]
+${0:${VISUAL}}
+\end{exercise}
+endsnippet
+snippet lem
+\begin{lemma}[${1:}]
+${0:${VISUAL}}
+\end{lemma}
+endsnippet
+snippet cor
+\begin{corollary}[${1:}]
+${0:${VISUAL}}
+\end{corollary}
+endsnippet
+snippet ass 
+\begin{assumption}[${1:}]
+${0:${VISUAL}}
+\end{assumption}
+endsnippet
+snippet prop 
+\begin{proposition}[${1:}]
+${0:${VISUAL}}
+\end{proposition}
+endsnippet
+snippet conj 
+\begin{conjecture}[${1:}]
+${0:${VISUAL}}
+\end{conjecture}
+endsnippet
+snippet pro
+\begin{proof}
+${0:${VISUAL}}
+\end{proof}
+endsnippet
+snippet sol
+\begin{solution}
+${0:${VISUAL}}
+\end{solution}
+endsnippet
+
+#Symbols:
+snippet frac "frac" i
+\frac{$1}{$2}$0
+endsnippet
+snippet lra "leftrightarrow" i
+\$\Leftrightarrow\$$0
+endsnippet
+snippet lar "leftarrow" i
+\$\Leftarrow\$$0
+endsnippet
+snippet rar "rightarrow" i
+\$\Rightarrow\$$0
+endsnippet
+
+#Text emphasis:
+snippet bf "bf" i
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+snippet if "if" i
+\textit{${1:${VISUAL}}}$0
+endsnippet
+
+#Beamer:
+snippet frame "frame" b
+\begin{frame}${2:%}\frametitle{$1}
+${0:${VISUAL}}
+\end{frame}
+endsnippet
+snippet bbuttom "beamerbuttom" i
+\hyperlink{${1:label}}{\beamerbutton{${2:text}}}$0
+endsnippet
+

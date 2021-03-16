@@ -1,0 +1,76 @@
+snippet bib-article "Article reference" b
+@article{${1:${VISUAL:name}},
+	author={${2:author}},
+	title={${3:title}},
+	journal={${4:journal}},
+	volume={${5:NN}},
+	number={${6:NN}},
+	year={${7:YYYY}},
+	pages={${8:NN}--${9:NN}},
+}$0
+endsnippet
+snippet bib-book "Book reference" b
+@book{${1:${VISUAL:name}},
+	author={${2:author}},
+	title={${3:title}},
+	subtitle={${4:subtitle}},
+	year={${5:YYYY}},
+	location={${6:somewhere}},
+	publisher={${7:publisher}},
+}$0
+endsnippet
+snippet bib-chapter "chapter" b
+@incollection{${1:${VISUAL:name}},
+	author      = {${2:author}},
+	title       = {${3:title}},
+	booktitle   = {${4:booktitle}},
+	editor      = {${5:editor/mainauthors}},
+	publisher   = {${6:publisher}},
+	address     = {${7:location}},
+	year        = {${8:year}},
+	pages       = {${9:pages}},
+	chapter     = {${10:chapternumber}},
+}
+endsnippet
+snippet bib-lecture
+@misc{${1:${VISUAL:name}},
+    author={${2:author}},
+	note={Lecture Notes},
+    title={${3:title}},
+	year={${5:YYYY}},
+}
+endsnippet
+snippet bib-misc
+@misc{${1:${VISUAL:name}},
+    author={${2:author}},
+    title={${3:title}},
+	year={${5:YYYY}},
+}
+endsnippet
+snippet bib-tech "Technical Report" b
+@techreport{${1:${VISUAL:name}},
+    author={${2:author}},
+    title={${3:title}},
+    institution={${4:note}},
+    month={${5:note}},
+    year={${6:note}},
+}
+endsnippet
+snippet bib-website "Online resource" b
+@misc{${1:${VISUAL:name}},
+	author={${2:author}},
+	title={${3:title}},
+	year={$4:year written}},
+	month={$5:month written}},
+	url={${6:url}},
+	note={Accessed on ${7:`date +%m/%d/%y`}},
+}$0
+endsnippet
+snippet bib-working "Unpublished/Working paper" b
+@unpublished{${1:${VISUAL:name}},
+	author={${2:author}},
+	title={${3:title}},
+	note={${4:note}},
+	year={${7:YYYY}},
+}$0
+endsnippet

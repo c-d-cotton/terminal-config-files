@@ -1,0 +1,8 @@
+ConfirmExit=no
+Term=xterm
+ForegroundColour=0,0,0
+BackgroundColour=255,255,255
+Font=Consolas
+FontHeight=13
+CursorType=block
+CursorBlinks=no

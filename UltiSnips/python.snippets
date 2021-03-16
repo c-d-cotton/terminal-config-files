@@ -1,0 +1,36 @@
+snippet pre "preamble" b
+#!/usr/bin/env python3
+
+import os
+from pathlib import Path
+import sys
+
+__projectdir__ = Path(os.path.dirname(os.path.realpath(__file__)) + '/')
+
+endsnippet
+
+snippet impr "importstandard" i
+sys.path.append(str(__projectdir__ / Path('submodules/${1:submodulebasename}/')))
+from ${2:modulename} import ${3:functionname}
+endsnippet
+
+snippet impa "importstandard" i
+sys.path.append(${1:abspath}.replace('~', os.path.expanduser('~')))
+from stringvar_func import evalstring
+endsnippet
+
+snippet argparse "argparse" b
+#Argparse:{{{
+import argparse
+
+parser=argparse.ArgumentParser()
+# string
+parser.add_argument("${1:name i.e. --}")
+# boolean
+parser.add_argument("${1:name i.e. --}", action = 'store_true')
+
+args=parser.parse_args()
+#End argparse:}}}
+endsnippet
+
+
