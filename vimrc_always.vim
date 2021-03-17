@@ -260,8 +260,9 @@ autocmd FileType bib :set iskeyword+=-
 " based on https://vim.fandom.com/wiki/In_line_copy_and_paste_to_system_clipboard
 " for when can't access the register as -clipboard not available in vim version
 vnoremap <Leader>y y: call system("xclip -i -selection clipboard", getreg("\""))<CR>
-vnoremap <Leader>p :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
-" command! PASTE :r!xclip -o<CR>
+" nnoremap <Leader>p :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
+command! XCP :r!xclip -o
+nnoremap <Leader>p :XCP<CR>
 
 " cygwin copy and paste
 " normal register doesn't work since cygwin access /dev/clipboard to copy/paste from clipboard
