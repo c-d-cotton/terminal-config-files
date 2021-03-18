@@ -152,21 +152,28 @@ set autoindent
 " endif
 silent! set breakindent
 
-" LEADER:{{{2
-" let mapleader = ","
-
-"NAVIGATION:{{{2
-" <Leader>gx
-let g:netrw_browsex_viewer="google-chrome-stable --incognito"
+" INTERNET:{{{2
+" note can also call default browser via default internet command gx
 
 function! GoogleChrome()
     let website=expand("<cfile>")
     " echo l:website
     exec 'silent !google-chrome-stable ' . l:website . " &>/dev/null"
     redraw!
-    
 endfunction
-nnoremap <Leader>x :call GoogleChrome()<CR>
+
+function! GoogleChromeIncognito()
+    let website=expand("<cfile>")
+    " echo l:website
+    exec 'silent !google-chrome-stable --incognito ' . l:website . " &>/dev/null"
+    redraw!
+endfunction
+
+nnoremap <Leader>gc :call GoogleChrome()<CR>
+nnoremap <Leader>gd :call GoogleChromeIncognito()<CR>
+
+" LEADER:{{{2
+" let mapleader = ","
 
 "NUMBERING:{{{2
 set number " add numbers to side of screen
