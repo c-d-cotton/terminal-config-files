@@ -74,7 +74,7 @@ endfunction
 command! SPUSE call SPUSE()
 function! VSPUSE()
 let my_filetype = &filetype
-execute ':sp ' . $VIMHOME . 'UltiSnips/' . my_filetype . '.snippets'
+execute ':vsp ' . $VIMHOME . 'UltiSnips/' . my_filetype . '.snippets'
 endfunction
 command! VSPUSE call VSPUSE()
 
