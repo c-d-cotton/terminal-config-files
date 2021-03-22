@@ -54,7 +54,29 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+function! BADDTEX()
+let filename = $VIMHOME . 'Ultisnips/tex.snippets'
+execute ':badd ' . filename
+endfunction
+autocmd FileType tex :call BADDTEX()
+function! BADDBIB()
+let filename = $VIMHOME . 'Ultisnips/bib.snippets'
+execute ':badd ' . filename
+endfunction
+autocmd FileType bib :call BADDBIB()
+
 command! USE UltiSnipsEdit
+
+function! SPUSE()
+let my_filetype = &filetype
+execute ':sp ' . $VIMHOME . 'UltiSnips/' . my_filetype . '.snippets'
+endfunction
+command! SPUSE call SPUSE()
+function! VSPUSE()
+let my_filetype = &filetype
+execute ':sp ' . $VIMHOME . 'UltiSnips/' . my_filetype . '.snippets'
+endfunction
+command! VSPUSE call VSPUSE()
 
 command! USUPDATE call UltiSnips#RefreshSnippets()
 
