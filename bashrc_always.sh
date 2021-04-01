@@ -5,6 +5,9 @@
 # http://www.cdcotton.com
 # BASH_PREAMBLE_END:}}}
 
+projectdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/"
+
+
 #SETTINGS:{{{1
 #COLOURS:{{{2
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -128,6 +131,69 @@ alias mv='mv --interactive'
 lstex () { ls | grep .tex; }
 lspdf () { ls | grep .pdf; }
 lstxt () { ls | grep .txt; }
+
+# GENERAL FUNCTIONS:{{{1
+# allcode-list:{{{2
+allcode() {
+    if [ ! -f "$projectdir"custom/allcode.txt ]; then
+        echo "need to create terminal-config-files/custom/allcode.txt file containing code list"
+        return 1
+    fi
+    "$projectdir"submodules/allcode-list/getallcode_func.py --files_aslines "$(cat "$projectdir"custom/allcode.txt)"
+}
+allcode2() {
+    "$projectdir"submodules/allcode-list/getallcode_func.py "$@"
+}
+
+# common-section:{{{2
+commonsectionsupdate() {
+    if [ ! -f "$projectdir"custom/allcode.txt ]; then
+        echo "need to create terminal-config-files/custom/allcode.txt file containing code list"
+        return 1
+    fi
+    if [ ! -d "$projectdir"custom/commonsections/ ]; then
+        echo "need to create terminal-config-files/custom/commonsections/ folder containing common sections"
+        return 1
+    fi
+    "$projectdir"submodules/common-section/common_section_func.py --files_aslines "$(allcode)" "$projectdir"custom/commonsections/
+}
+commonsectionsupdate2() {
+    "$projectdir"submodules/common-section/common_section_func.py "$@"
+}
+
+# grepcode:{{{2
+grepcode() {
+    if [ ! -f "$projectdir"custom/allcode.txt ]; then
+        echo "need to create terminal-config-files/custom/allcode.txt file containing code list"
+        return 1
+    fi
+    "$projectdir"submodules/grepcode/grepcode_func.py --files_aslines "$(allcode)" "$@"
+}
+grepcode2() {
+    "$projectdir"submodules/grepcode/grepcode_func.py "$@"
+}
+
+# infrep:{{{2
+infrep() {
+    if [ ! -f "$projectdir"custom/allcode.txt ]; then
+        echo "need to create terminal-config-files/custom/allcode.txt file containing code list"
+        return 1
+    fi
+    "$projectdir"submodules/infrep/run/infrep.py --files_aslines "$(allcode)" "$@"
+}
+infrep2() {
+    "$projectdir"submodules/infrep/run/infrep.py "$@"
+}
+pathmv() {
+    if [ ! -f "$projectdir"custom/allcode.txt ]; then
+        echo "need to create terminal-config-files/custom/allcode.txt file containing code list"
+        return 1
+    fi
+    "$projectdir"submodules/infrep/run/pathmv.py --files_aslines "$(allcode)" "$@"
+}
+pathmv2() {
+    "$projectdir"submodules/infrep/run/pathmv.py "$@"
+}
 
 # APPLICATION SPECIFIC FUNCTIONS:{{{1
 #GIT/GITHUB:{{{2
