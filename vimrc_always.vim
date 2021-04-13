@@ -65,8 +65,11 @@ execute ':badd ' . filename
 endfunction
 autocmd FileType bib :call BADDBIB()
 
-command! USE UltiSnipsEdit
-
+function! USE()
+let my_filetype = &filetype
+execute ':sp ' . $VIMHOME . 'UltiSnips/' . my_filetype . '.snippets'
+endfunction
+command! USE call USE()
 function! SPUSE()
 let my_filetype = &filetype
 execute ':sp ' . $VIMHOME . 'UltiSnips/' . my_filetype . '.snippets'

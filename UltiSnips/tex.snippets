@@ -10,7 +10,6 @@ snippet preuni "preamble-project" b
 \usepackage{mdframed}
 \usepackage[bottom]{footmisc} %footnotes at bottom of page
 \usepackage{titlesec} %adjust paragraphs
-\usepackage[nohead]{geometry} %[a4paper,landscape]
 
 
 \usepackage{amsmath}
@@ -63,7 +62,7 @@ snippet preuni "preamble-project" b
 %General Spacing
 \newcommand{\mar}{0.9in} %for geometry command
 % needs geometry package
-\geometry{verbose,letterpaper,tmargin=\mar,bmargin=\mar,lmargin=\mar,rmargin=\mar,headheight=0in,headsep=0in,footskip=0.25in}
+\geometry{verbose,letterpaper,nohead,tmargin=\mar,bmargin=\mar,lmargin=\mar,rmargin=\mar,headheight=0in,headsep=0in,footskip=0.25in}
 
 % \def\bodyspacing{\singlespacing}
 \def\bodyspacing{\onehalfspacing}

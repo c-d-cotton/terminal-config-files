@@ -139,7 +139,8 @@ allcode() {
         echo "need to create terminal-config-files/custom/allcode.txt file containing code list"
         return 1
     fi
-    "$projectdir"submodules/allcode-list/getallcode_func.py --files_aslines "$(cat "$projectdir"custom/allcode.txt)"
+    # "$projectdir"submodules/allcode-list/getallcode_func.py --files_aslines "$(cat "$projectdir"custom/allcode.txt)"
+    "$projectdir"submodules/allcode-list/getallcode_func.py --files_infile "$projectdir"custom/allcode.txt
 }
 allcode2() {
     "$projectdir"submodules/allcode-list/getallcode_func.py "$@"
