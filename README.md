@@ -75,6 +75,13 @@ If I added a list of code (which can include comments starting with # and blank 
 If I have defined terminal-config-files/custom/allcode.txt and terminal-config-files/custom/commonsections/, which should be a folder containing sections of code that all start and end with a unique line, then I can run:
 - commonsectionsupdate: The version of the common section in the custom folder is copied across to any other common sections in allcode. Allows quick changes to these common sections. See submodules/common-section/ for details.
 
+If I have defined terminal-config-files/custom/gitdir/rootdirs.txt (a list of folders each containing git projects) and/or terminal-config-files/custom/gitdir/singledirs.txt (a list of git projects) then I can run:
+- gitalllist: Get list of git project locations
+- gitalldetails: Get details on current commit status of git projects
+- gitallcommit: Commit all projects with uncommitted changes with the same project name. Warns you if there are new added files in these projects.
+- gitallpull: Pull all changes for projects
+- gitallpush: Push all changes for projects
+
 # Vim Submodules
 To install Vim submodules on a Unix shell run:
 ```
