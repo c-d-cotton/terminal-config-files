@@ -162,6 +162,32 @@ commonsectionsupdate2() {
     "$projectdir"submodules/common-section/common_section_func.py "$@"
 }
 
+# git-update:{{{2
+# get arguments for other git-update functions
+gitfileinputs=""
+if [ -e "$projectdir"custom/gitdir/rootdirs.txt ]; then
+    gitfileinputs="$gitfileinputs"' --rootdirs_infile '"$projectdir"'custom/gitdir/rootdirs.txt'
+fi
+if [ -e "$projectdir"custom/gitdir/singledirs.txt ]; then
+    gitfileinputs="$gitfileinputs"' --singledirs_infile '"$projectdir"'custom/gitdir/singledirs.txt'
+fi
+
+gitalllist() {
+    "$projectdir"submodules/git-update/run/printgitlist_ap.py $gitfileinputs
+}
+gitalldetails() {
+    "$projectdir"submodules/git-update/run/printgitdetails_ap.py $gitfileinputs
+}
+gitallcommit() {
+    "$projectdir"submodules/git-update/run/commitallgit_ap.py $gitfileinputs "$@"
+}
+gitallpull() {
+    "$projectdir"submodules/git-update/run/pullorigingit_ap.py $gitfileinputs
+}
+gitallpush() {
+    "$projectdir"submodules/git-update/run/pushorigingit_ap.py $gitfileinputs
+}
+
 # grepcode:{{{2
 grepcode() {
     if [ ! -f "$projectdir"custom/allcode.txt ]; then

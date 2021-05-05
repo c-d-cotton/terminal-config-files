@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # the submodules we're downloading are (names separated by a space):
-submodulenames="allcode-list infrep grepcode common-section vim-pathogen FastFold screen vim-tmux-focus-events tcomment_vim ultisnips ultisnips-python2 vim-eunuch vim-tmux-navigator"
+submodulenames="allcode-list common-section git-update grepcode infrep"
+submodulenames="$submodulenames"' '"vim-pathogen FastFold screen vim-tmux-focus-events tcomment_vim ultisnips ultisnips-python2 vim-eunuch vim-tmux-navigator"
 
 # STANDARD_SUBMODULE_DOWNLOAD_START:{{{
 
