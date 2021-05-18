@@ -28,11 +28,12 @@ allcode=$("$pythonpath" "$projectdir"submodules/allcode-list/getallcode_func.py 
 # get location of zip folder (might want to put in syncing folder e.g. Dropbox)
 if [ -f "$projectdir"/custom/backupzipfolder.txt ]; then
     backupzipfolder="$(cat "$projectdir"custom/backupzipfolder.txt)"
+    backupzipfolder="${backupzipfolder/#\~/$HOME}"
 else
     backupzipfolder=~/temp/regbackup/
 fi
 
-if [ -d "$backupzipfolder" ]; then
+if [ ! -d "$backupzipfolder" ]; then
     echo "$backupzipfolder in custom/backupzipfolder.txt does not exist"
     exit 1
 fi
