@@ -71,6 +71,7 @@ If I added a list of code (which can include comments starting with # and blank 
 - infrep: Replaces arg1 with arg2 for all allcode files. Can also use Python regex. See submodules/infrep/ for details.
 - pathmv: Move and also replace any absolute references to the files that are being moved with their new location for all allcode files. See submodules/infrep/ for details.
 - grepcode: Searches through all the allcode files to look for arg. See submodules/grepcode/ for details.
+- backupcode.sh: Backs up my code and my directories in the allcode.txt file to ~/temp/regbackup (two versions of backups: code only and full directories). Does backups at varying frequencies and also adds zipped backups. If specify custom/backupzipfolder.txt then the zipped version of the folders are saved in a separate location specified by that file. If specify custom/pythonpath.txt then python is called from the path in that file (necessary sometimes if the file is called through cron since cron may not call the correct python3 version).
 
 If I have defined terminal-config-files/custom/allcode.txt and terminal-config-files/custom/commonsections/, which should be a folder containing sections of code that all start and end with a unique line, then I can run:
 - commonsectionsupdate: The version of the common section in the custom folder is copied across to any other common sections in allcode. Allows quick changes to these common sections. See submodules/common-section/ for details.
