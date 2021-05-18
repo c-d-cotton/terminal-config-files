@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # the submodules we're downloading are (names separated by a space):
-submodulenames="allcode-list common-section git-update grepcode infrep"
+submodulenames="allcode-list common-section git-update grepcode infrep regbackup"
 submodulenames="$submodulenames"' '"vim-pathogen FastFold screen vim-tmux-focus-events tcomment_vim ultisnips ultisnips-python2 vim-eunuch vim-tmux-navigator"
 
 # STANDARD_SUBMODULE_DOWNLOAD_START:{{{
@@ -48,3 +48,26 @@ cd "$pwdoriginal"
 
 # STANDARD_SUBMODULE_DOWNLOAD_END}}}
 
+# link across files in regbackup:{{{
+# get current directory
+pwdoriginal="$(pwd)"
+
+# cd to this script's directory
+cd "$(dirname "$0")"
+
+# make and cd to paths
+if [ ! -d submodules/regbackup/paths ]; then
+    mkdir submodules/regbackup/paths
+fi
+cd submodules/regbackup/paths
+
+if [ ! -L allcode.txt ]; then
+    ln -s ../../../custom/allcode.txt .
+fi
+if [ ! -L backupzipfolder.txt ]; then
+    ln -s ../../../custom/backupzipfolder.txt .
+fi
+
+cd "$pwdoriginal"
+
+# link across files in regbackup:}}}

@@ -7,7 +7,6 @@
 
 projectdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/"
 
-
 #SETTINGS:{{{1
 #COLOURS:{{{2
 # set a fancy prompt (non-color, unless we know we "want" color)
