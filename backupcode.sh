@@ -65,25 +65,26 @@ if [ ! -d "$backupzipfolder" ]; then
     exit 1
 fi
 
-# only do daily and 10day backups if not limited backups and have a separate zip folder
+# only do daily and 10day zip backups if not limited backups and have a separate zip folder
+# otherwise do monthly zip backup
 
 # now do zip backup for code
 if [ $limitedbackups == 0 ] && [ $separatezipfolder == 1 ]; then
-    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/code/d1/ "$backupzipfolder"/code/d1/ --maxbackups 12
+    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/code/d1/ "$backupzipfolder"/code/d1zip/ --maxbackups 12
 
-    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/code/d10/ "$backupzipfolder"/code/d10/
+    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/code/d10/ "$backupzipfolder"/code/d10zip/
 else
-    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/code/m1/ "$backupzipfolder"/code/m1/
+    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/code/m1/ "$backupzipfolder"/code/m1zip/
 fi
 
 
 # now do zip backup for code
 if [ $limitedbackups == 0 ] && [ $separatezipfolder == 1 ]; then
-    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/d1/ "$backupzipfolder"/dirs/d1/ --maxbackups 12
+    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/d1/ "$backupzipfolder"/dirs/d1zip/ --maxbackups 12
 
-    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/d10/ "$backupzipfolder"/dirs/d10/
+    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/d10/ "$backupzipfolder"/dirs/d10zip/
 else
-    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/m1/ "$backupzipfolder"/dirs/m1/
+    "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/m1/ "$backupzipfolder"/dirs/m1zip/
 fi
 
 
