@@ -39,7 +39,7 @@ fi
 allcode=$("$pythonpath" "$projectdir"submodules/allcode-list/getallcode_func.py --files_infile "$projectdir"custom/allcode.txt)
 
 if [ $limitedbackups == 1 ]; then
-    allcodefreqs='-f M5_2 -f H1_2 d1_2 -f d10_2 -f m1_2'
+    allcodefreqs='-f M5_2 -f H1_2 -f d1_2 -f d10_2 -f m1_2'
 else
     allcodefreqs='-f M5 -f H1 -f d1 -f d10 -f m1'
 fi
