@@ -541,7 +541,13 @@ snippet frame "frame" b
 ${0:${VISUAL}}
 \end{frame}
 endsnippet
-snippet bbuttom "beamerbuttom" i
+snippet bbutton "beamerbutton" i
 \hyperlink{${1:label}}{\beamerbutton{${2:text}}}$0
+endsnippet
+snippet bcontents "beamercontents" b
+% contents
+\begin{frame}
+\tableofcontents[currentsection] % do %[currentsection] to not highlight current section
+\end{frame}
 endsnippet
 
