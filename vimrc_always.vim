@@ -365,4 +365,7 @@ command! Q wqa
 " turn off highlighting two letter command
 nnoremap <Leader>h :noh<cr>
 
+" shortcuts for navigating command menu
+:cnoremap <C-S-b> <S-Left>
+:cnoremap <C-S-f> <S-Right>
 
