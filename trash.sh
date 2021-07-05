@@ -14,8 +14,39 @@
 
 set -e
 
-trashfolder=~/trash
+trashfolder=~/temp/trash
+oldtrashstem=~/temp/oldtrash
+oldtrashfolder="$oldtrashstem"_"$(date --date='1 month ago' +%Y%m)"
+# Adjust old trash folder:{{{1
+# if oldtrashstem exist as folder then stop
+if [ -e "$oldtrashstem" ]; then
+    echo "$oldtrashstem already exists. Cannot continue while this exists."
+fi
 
+# mv current oldtrashfolder to oldtrashstem while delete old versions of oldtrashfolder
+if [ -e "$oldtrashfolder" ]; then
+    mv "$oldtrashfolder" "$oldtrashstem"
+fi
+
+# delete old versions of oldtrashfolder
+rm -rf "$oldtrashstem"_*
+
+# rename oldtrashfolder as the correct name again
+if [ -e "$oldtrashstem" ]; then
+    mv "$oldtrashstem" "$oldtrashfolder"
+fi
+
+# move current trash to oldtrash if oldtrash does not exist
+if [ ! -e "$oldtrashfolder" ]; then
+    echo 1
+    if [ -e "$trashfolder" ]; then
+        mv "$trashfolder" "$oldtrashfolder"
+    else
+        mkdir "$oldtrashfolder"
+    fi
+fi
+
+# Set up Folders:{{{1
 if [ ! -d "$trashfolder" ]; then
     mkdir -p "$trashfolder"
 fi
@@ -23,6 +54,7 @@ if [ ! -d "$trashfolder"/trash_old_versions ]; then
     mkdir "$trashfolder/trash_old_versions"
 fi
 
+# Move files to trash:{{{1
 dateext=$(date '+%Y%m%d_%H%M%S')
 
 for filename in "$@"; do

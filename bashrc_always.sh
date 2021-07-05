@@ -242,5 +242,5 @@ tarinfo () { echo "tar -zxvf, z=uncompress with gzip, x=extract to disk from arc
 
 # TRASH:{{{2
 trash () {
-    ~/.terminal-config-files/trash.sh "$@"
+    $terminalconfigfiles/trash.sh "$@"
 }

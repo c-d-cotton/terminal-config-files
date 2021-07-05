@@ -38,6 +38,15 @@ fi
 
 sed -i 's|.*# source bashrc_always.sh|\. '"$projectdir"'bashrc_always.sh # source bashrc_always.sh|g' ~/.bashrc
 
+# add terminalconfigfiles variable if not already there
+# the marker means that even if I change the source folder, I'll still replace the old text
+if ! grep -q "# variable for terminalconfigfiles" ~/.bashrc; then
+    echo "adding variable for terminalconfigfiles"
+    echo "# variable for terminalconfigfiles" >> ~/.bashrc
+fi
+
+sed -i 's|.*# variable for terminalconfigfiles|terminalconfigfiles='"$projectdir"' # variable for terminalconfigfiles|g' ~/.bashrc
+
 # create vimrc
 if [ ! -f ~/.vimrc ]; then
     touch ~/.vimrc
