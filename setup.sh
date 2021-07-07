@@ -36,7 +36,7 @@ if ! grep -q "# source bashrc_always.sh" ~/.bashrc; then
     echo "# source bashrc_always.sh" >> ~/.bashrc
 fi
 
-sed -i 's|.*# source bashrc_always.sh|\. '"$projectdir"'bashrc_always.sh # source bashrc_always.sh|g' ~/.bashrc
+sed -i'.bak' 's|.*# source bashrc_always.sh|\. '"$projectdir"'bashrc_always.sh # source bashrc_always.sh|g' ~/.bashrc
 
 # add terminalconfigfiles variable if not already there
 # the marker means that even if I change the source folder, I'll still replace the old text
@@ -45,7 +45,7 @@ if ! grep -q "# variable for terminalconfigfiles" ~/.bashrc; then
     echo "# variable for terminalconfigfiles" >> ~/.bashrc
 fi
 
-sed -i 's|.*# variable for terminalconfigfiles|terminalconfigfiles='"$projectdir"' # variable for terminalconfigfiles|g' ~/.bashrc
+sed -i'.bak' 's|.*# variable for terminalconfigfiles|terminalconfigfiles='"$projectdir"' # variable for terminalconfigfiles|g' ~/.bashrc
 
 # create vimrc
 if [ ! -f ~/.vimrc ]; then
@@ -59,7 +59,7 @@ if ! grep -q '" source vimrc_always.vim' ~/.vimrc; then
 fi
 # if ! grep -q " source vimrc_always.vim" ~/.vimrc; then
 
-sed -i 's|.*" source vimrc_always.vim|so '"$projectdir"'vimrc_always.vim " source vimrc_always.vim|g' ~/.vimrc
+sed -i'.bak' 's|.*" source vimrc_always.vim|so '"$projectdir"'vimrc_always.vim " source vimrc_always.vim|g' ~/.vimrc
 
 # Other Bash Scripts:{{{1
 # add Xresources (for xterm font config)

@@ -122,6 +122,9 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# Macbook remove Bash depreciation message
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # ALIASES:{{{1
 # BASH COMMAND LINE FUNCTIONS:
 alias cp='cp --interactive'

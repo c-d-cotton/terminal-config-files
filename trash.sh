@@ -16,7 +16,16 @@ set -e
 
 trashfolder=~/temp/trash
 oldtrashstem=~/temp/oldtrash
-oldtrashfolder="$oldtrashstem"_"$(date --date='1 month ago' +%Y%m)"
+# get date - date runs differently on linux v macbook
+if [ "$(uname)" == "Darwin" ]; then
+    # macbook
+    onemonthago="$(date -v "-1m" +%Y%m)"
+else
+    # linux
+    onemonthago="$(date --date='1 month ago' +%Y%m)"
+fi
+oldtrashfolder="$oldtrashstem"_"$onemonthago"
+
 # Adjust old trash folder:{{{1
 # if oldtrashstem exist as folder then stop
 if [ -e "$oldtrashstem" ]; then
@@ -42,7 +51,7 @@ if [ ! -e "$oldtrashfolder" ]; then
     if [ -e "$trashfolder" ]; then
         mv "$trashfolder" "$oldtrashfolder"
     else
-        mkdir "$oldtrashfolder"
+        mkdir -p "$oldtrashfolder"
     fi
 fi
 
@@ -51,7 +60,7 @@ if [ ! -d "$trashfolder" ]; then
     mkdir -p "$trashfolder"
 fi
 if [ ! -d "$trashfolder"/trash_old_versions ]; then
-    mkdir "$trashfolder/trash_old_versions"
+    mkdir -p "$trashfolder/trash_old_versions"
 fi
 
 # Move files to trash:{{{1
