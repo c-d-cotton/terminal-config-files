@@ -125,6 +125,10 @@ shopt -s checkwinsize
 # Macbook remove Bash depreciation message
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# turn on extensions of directory variables - seems to be off on bash version 4.2 by default
+# https://askubuntu.com/questions/41891/bash-auto-complete-for-environment-variables
+shopt -s direxpand
+
 # ALIASES:{{{1
 # BASH COMMAND LINE FUNCTIONS:
 alias cp='cp -i'
