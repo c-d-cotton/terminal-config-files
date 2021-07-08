@@ -303,7 +303,7 @@ command! CYGC :'<,'>w !cat > /dev/clipboard
 " paste
 command! CYGP :r !cat /dev/clipboard
 
-" LATEX:{{{2
+" LATEX RUN:{{{2
 fun! PDFLATEX()
     if &ft=='tex'
         cd %:p:h
@@ -343,6 +343,48 @@ fun! ChangeProjectDir()
     endif
 endfun
 nnoremap <Leader>a :call ChangeProjectDir()<CR>
+
+" LATEX VIEW PDF:{{{2
+function! PdfTex()
+
+    let extension = fnameescape(expand("%:e"))
+    if extension != 'tex'
+        echo "filename should end with .tex"
+        return 1
+    endif
+
+    let filestem = fnameescape(expand("%:p:r"))
+    let filestemescape = fnameescape(expand("%:p:r"))
+
+    " get string to run to open pdf
+    " silent removes main messages from running. However, add &>/dev/null to remove random error messages
+    " final & ensures that program continues running with setsid
+    if g:pdftexviewer == ""
+        echo "Specify g:pdftexviewer to use this function."
+        return 1
+    elseif g:pdftexviewer == "evince_basic"
+        let execstr = 'silent !setsid evince ' . filestemescape . '.pdf' . ' &>/dev/null &'
+    elseif g:pdftexviewer == "okular_forwardsync"
+        let execstr = 'silent !setsid okular ' . filestemescape . '.pdf' . '\#src:' . line(".") . filestemescape . '.tex' . ' &>/dev/null &'
+    elseif g:pdftexviewer == "okular_basic"
+        let execstr = 'silent !setsid okular ' . filestemescape . '.pdf' . ' &>/dev/null &'
+    elseif g:pdftexviewer == "sumatra_cygwin_forwardsearch"
+        let execstr = "silent !setsid '/cygdrive/c/Program Files (x86)/SumatraPDF/SumatraPDF.exe' -reuse-instance -forward-search '" . filestemescape . ".tex' " . line(".") . " '" . filestemescape . ".pdf' &"
+    elseif g:pdftexviewer == "winexplorer_basic"
+        let execstr = "!explorer.exe " . '"file:\\\\' . shellescape(expand('%:p:h')) . '\' . shellescape(expand('%:t:r')) . '.pdf"'
+    else
+        echo "g:pdftexviewer is misspecified."
+        return 1
+    endif
+
+    exec execstr
+    " echo execstr
+    " redraws the window otherwise get black bars etc.
+    redraw!
+endfunction
+
+" mapping
+nmap <Leader>lb :call PdfTex()<CR>
 
 " MAPPINGS AND SHORTCUTS:{{{1
 
