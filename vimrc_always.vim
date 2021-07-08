@@ -345,6 +345,8 @@ endfun
 nnoremap <Leader>a :call ChangeProjectDir()<CR>
 
 " LATEX VIEW PDF:{{{2
+" to set specify something like
+" let g:pdftexviewer == "skim_forwardsearch"
 function! PdfTex()
 
     let extension = fnameescape(expand("%:e"))
@@ -368,6 +370,9 @@ function! PdfTex()
         let execstr = 'silent !setsid okular ' . filestemescape . '.pdf' . '\#src:' . line(".") . filestemescape . '.tex' . ' &>/dev/null &'
     elseif g:pdftexviewer == "okular_basic"
         let execstr = 'silent !setsid okular ' . filestemescape . '.pdf' . ' &>/dev/null &'
+    elseif g:pdftexviewer == "skim_forwardsearch"
+        " note didn't use setsid as it isn't on macbook by default
+        let execstr = 'silent !/Applications/Skim.app/Contents/SharedSupport/displayline ' . line(".") . ' ' . filestemescape . '.pdf' . ' &>/dev/null &'
     elseif g:pdftexviewer == "sumatra_cygwin_forwardsearch"
         let execstr = "silent !setsid '/cygdrive/c/Program Files (x86)/SumatraPDF/SumatraPDF.exe' -reuse-instance -forward-search '" . filestemescape . ".tex' " . line(".") . " '" . filestemescape . ".pdf' &"
     elseif g:pdftexviewer == "winexplorer_basic"
