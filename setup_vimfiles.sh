@@ -21,15 +21,20 @@ fi
 if [ "$1" == "link" ]; then
 
     linkorcopy() {
+
         source="$1"
         dest="$2"
         # ln -s needs no / at end to work the way I like
         if [ -d "$source" ]; then
             if [ "${source: -1}" == "/" ]; then
-                source="${source:: -1}"
+                # doesn't work in macbook bash
+                # source="${source:: -1}"
+                source="${source%?}"
             fi
             if [ "${dest: -1}" == "/" ]; then
-                dest="${dest:: -1}"
+                # doesn't work in macbook bash
+                # dest="${dest:: -1}"
+                dest="${dest%?}"
             fi
         fi
         ln -snf "$source" "$dest"
@@ -91,9 +96,9 @@ done
 
 # only add ultisnips if vim comes with python enabled
 if [[ "$(vim --version)" == *"+python3"* ]]; then
-    linkorcopy "$projectdir"submodules/ultisnips/ "$vimfolder"bundle/ultisnips/
+    rsync -a  "$projectdir"submodules/ultisnips/ "$vimfolder"bundle/ultisnips/
 elif [[ "$(vim --version)" == *"+python"* ]]; then
-    linkorcopy "$projectdir"submodules/ultisnips-python2/ "$vimfolder"bundle/ultisnips/
+    rsync -a "$projectdir"submodules/ultisnips-python2/ "$vimfolder"bundle/ultisnips/
 else
     echo "Ultisnips not installed as missing python-enabled vim"
 fi

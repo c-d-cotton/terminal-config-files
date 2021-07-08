@@ -127,8 +127,8 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # ALIASES:{{{1
 # BASH COMMAND LINE FUNCTIONS:
-alias cp='cp --interactive'
-alias mv='mv --interactive'
+alias cp='cp -i'
+alias mv='mv -i'
 
 lstex () { ls | grep .tex; }
 lspdf () { ls | grep .pdf; }
