@@ -389,7 +389,7 @@ function! PdfTex()
 endfunction
 
 " mapping
-nmap <Leader>lb :call PdfTex()<CR>
+nmap <Leader>lv :call PdfTex()<CR>
 
 " MAPPINGS AND SHORTCUTS:{{{1
 
