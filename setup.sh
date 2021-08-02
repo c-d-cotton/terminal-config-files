@@ -65,7 +65,10 @@ sed -i'.bak' 's|.*" source vimrc_always.vim|so '"$projectdir"'vimrc_always.vim "
 # add Xresources (for xterm font config)
 linkorcopy "$projectdir"Xresources ~/.Xresources
 if [ -n "$(command -v xrdb)" ]; then
+    # allow error in case no DISPLAY variable defined
+    set +e
     xrdb ~/.Xresources
+    set -e
 fi
 
 # add minttyrc (terminal display config for cygwin)
