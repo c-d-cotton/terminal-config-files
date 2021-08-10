@@ -16,42 +16,24 @@ When running both setup.sh and setup_vimfiles.sh, I need to specify whether I wa
 
 In general, it seems preferable to link, since this means I can typically easily git pull changes and also easily git push any changes. Note that I source rather than link/copy the bashrc_always.sh and vimrc_always.vim files.
 
-## Windows-Specific Issues
-- Since the scripts are bash, I will need git bash or cygwin to run them
-- If I only install vimfiles, I can also add vimrc_always.vim by adding `so LOCATIONOFVIMRCALWAYS/vimrc_always.vim` to my `~/_vimrc` file
-- If I don't have git bash or cygwin, I can just run the following commands to install vimfiles only (note since I'm copying across the full folders, it would be difficult to update these folders without replacing any changes/additions I've made):
-```
-rsync -a FOLDER/submodules/ ~/vimfiles/bundle/
-rsync -a FOLDER/submodules/vim-pathogen/autoload/ ~/vimfiles/autoload/
-rsync -a FOLDER/after/ ~/vimfiles/after/
-rsync -a FOLDER/UltiSnips/ ~/vimfiles/UltiSnips/
-```
-- I normally just set up only Vim on Windows, but if I really want to have a Unix environment, I could also run these scripts in Git Bash or Cygwin, but I haven't fully explored how well this works
-
-Quick summary of issues:
-- Can either copy or link across files from the folder. Link is preferred since then I can easily update the git folder to add changes and easily push changes as well. However, this may not be ideal on Windows
-- Windows: If only want to add Vim, can just run setup_vimfiles.sh
-
-
-
-This should work on any standard Unix shell. To run basic terminal setup i.e. everything except installing Vim submodules:
-cd ~
-wget https://cdcotton.com/code/modules_zipped/terminal-config-files
-./terminal-config-files/setup.sh
-
+## Additional Bashrc Commands:
 To start tmux automatically in Bash, add the following command to the bashrc:
 ```
 [[ -z "$TMUX" ]] && [[ -n "$(command -v tmux)" ]] && tmux
 ```
 
-See below to also install Vim submodules.
+## Windows-Specific Issues
+There is probably no need to add any non-Vim files to Windows.
 
-To delete the folder after usage:
-```
-chmod -R 755 terminal-config-files
-rm -r terminal-config-files terminal-config-files.zip
-cd -
-```
+The easiest way to add Vim files to Windows is just to copy them over from Unix where I've already downloaded them. If the Unix version has links, I should "cp -rL" this to a new location before copying that to Windows to replace the links with files. I can then also just download the vimrc_always.vim files and source it with `so LOCATIONOFVIMRCALWAYS/vimrc_always.vim`.
+
+Alternatively, I can run ./setup_vimfiles.sh in git bash or cygwin and copy over the vimrc_always.vim file.
+
+Finally, I can also just copy over the relevant folders bit by bit:
+rsync -a FOLDER/submodules/package/ ~/vimfiles/bundle/package/
+rsync -a FOLDER/submodules/vim-pathogen/autoload/ ~/vimfiles/autoload/
+rsync -a FOLDER/after/ ~/vimfiles/after/
+rsync -a FOLDER/UltiSnips/ ~/vimfiles/UltiSnips/
 
 # Purpose of Files
 after/: Contains all vim files
