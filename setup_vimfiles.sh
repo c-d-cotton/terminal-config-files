@@ -5,7 +5,7 @@ projectdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/"
 
 # Get Initial Arguments:{{{1
 if [ "$1" != "link" ] && [ "$1" != "copy" ]; then
-    echo "need to specify 'link' or 'copy' as arguments depending on whether want to link or copy the files across"
+    echo "need to specify 'link' or 'copy' as arguments depending on whether want to link or copy the files across. LINK IS BETTER SINCE ALLOWS FOR AUTOMATIC UPDATES!!!"
     exit 1
 fi
 if [ "$2" != "" ]; then
@@ -113,3 +113,12 @@ for f in *; do
 done
 cd - > /dev/null
 
+# Misc:{{{1
+# copy over filename to get file aliases in Vim
+# preferably do with links
+
+# make necessary folder
+mkdir -p ~/.vim/misc/
+
+# link/copy across alias file
+linkorcopy "$projectdir"custom/filealias/filealias.sh "$vimfolder"misc/filealias.sh

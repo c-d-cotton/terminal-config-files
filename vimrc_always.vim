@@ -303,6 +303,39 @@ command! CYGC :'<,'>w !cat > /dev/clipboard
 " paste
 command! CYGP :r !cat /dev/clipboard
 
+" FILE ALIAS:{{{2
+function! CabbrevSingleFile(filename)
+    " takes a filename with lines such as 1. and 2. into variables
+    " I can call these variables when cding/opening files in Vim
+    " 1. fvimtest="$HOME/vimtest.vim" 
+    " 2. dtr=/home/user/trash" - could cd to directory with 
+    " Afterwards could open 1 with ":e ftest"
+    " Could cd to 2 with ":cd dtr"
+    " Could open file.txt in 2 with ":e dtr/file.txt"
+
+    for line in readfile(a:filename)
+        " echo linesplit
+        let linesplit = split(line, "=")
+
+        let alias = linesplit[0]
+        let filename = linesplit[1]
+
+        " need to remove speechmarks from filename i.e. want $HOME/Dropbox not "$HOME/Dropbox"
+        let firstcharacter = strpart(filename, 0, 1)
+        if firstcharacter == '"' || firstcharacter == "'"
+            let filename = strpart(filename, 1, len(filename) - 2)
+        endif
+
+        let execstr = ":cabbrev " . alias . " " . filename
+
+        exec execstr
+    endfor
+endfunction
+
+if filereadable($VIMHOME . "misc/filealias.sh")
+    exec CabbrevSingleFile($VIMHOME . "misc/filealias.sh")
+endif
+
 " LATEX RUN:{{{2
 fun! PDFLATEX()
     if &ft=='tex'

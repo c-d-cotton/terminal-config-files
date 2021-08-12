@@ -133,7 +133,13 @@ if [ "$(uname)" != "Darwin" ]; then
 fi
 
 # ALIASES:{{{1
-# BASH COMMAND LINE FUNCTIONS:
+# FOLDERS/FILES:{{{2
+# call a file containing my bash aliases
+if [ -f "$terminalconfigfiles"/custom/filealias/filealias.sh ]; then
+    . "$terminalconfigfiles"/custom/filealias/filealias.sh
+fi
+
+# BASH COMMAND LINE FUNCTIONS:{{{2
 alias cp='cp -i'
 alias mv='mv -i'
 

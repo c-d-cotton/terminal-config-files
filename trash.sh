@@ -30,6 +30,7 @@ oldtrashfolder="$oldtrashstem"_"$onemonthago"
 # if oldtrashstem exist as folder then stop
 if [ -e "$oldtrashstem" ]; then
     echo "$oldtrashstem already exists. Cannot continue while this exists."
+    exit 1
 fi
 
 # mv current oldtrashfolder to oldtrashstem while delete old versions of oldtrashfolder
