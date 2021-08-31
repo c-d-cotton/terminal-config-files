@@ -29,15 +29,6 @@ if [ ! -f ~/.bashrc ]; then
     touch ~/.bashrc
 fi
 
-# add marker for source of bashrc if not already there
-# the marker means that even if I change the source folder, I'll still replace the old text
-if ! grep -q "# source bashrc_always.sh" ~/.bashrc; then
-    echo "adding bashrc_always.sh to bashrc"
-    echo "# source bashrc_always.sh" >> ~/.bashrc
-fi
-
-sed -i'.bak' 's|.*# source bashrc_always.sh|\. '"$projectdir"'bashrc_always.sh # source bashrc_always.sh|g' ~/.bashrc
-
 # add terminalconfigfiles variable if not already there
 # the marker means that even if I change the source folder, I'll still replace the old text
 if ! grep -q "# variable for terminalconfigfiles" ~/.bashrc; then
@@ -46,6 +37,15 @@ if ! grep -q "# variable for terminalconfigfiles" ~/.bashrc; then
 fi
 
 sed -i'.bak' 's|.*# variable for terminalconfigfiles|terminalconfigfiles='"$projectdir"' # variable for terminalconfigfiles|g' ~/.bashrc
+
+# add marker for source of bashrc if not already there
+# the marker means that even if I change the source folder, I'll still replace the old text
+if ! grep -q "# source bashrc_always.sh" ~/.bashrc; then
+    echo "adding bashrc_always.sh to bashrc"
+    echo "# source bashrc_always.sh" >> ~/.bashrc
+fi
+
+sed -i'.bak' 's|.*# source bashrc_always.sh|\. '"$projectdir"'bashrc_always.sh # source bashrc_always.sh|g' ~/.bashrc
 
 # create vimrc
 if [ ! -f ~/.vimrc ]; then
