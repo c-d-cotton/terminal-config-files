@@ -77,7 +77,8 @@ for filename in "$@"; do
     fi
 
     # get basename
-    basefilename="${filename##*/}"
+    # basefilename="${filename##*/}" # this didn't work when file ended in "/"
+    basefilename="$(basename "$filename")"
 
     if [ "$basefilename" == "trash_old_versions" ]; then
         echo "cannot back up a file with basename trash_old_versions"
@@ -86,19 +87,28 @@ for filename in "$@"; do
 
     backupdate="$trashfolder"/trash_old_versions/"$basefilename"_"$dateext"
 
-    # verify backup in trash/trash_old_versions/ does not exist already
-    if [ -e "$backupdate" ]; then
-        echo "$backupdate already exists"
-        exit 1
-    fi
 
     # copy across file to trash/trash_old_versions
-    cp -r "$fullfilename" "$backupdate"
+    # cp -r "$fullfilename" "$backupdate"
 
     # delete trashfolder version if exists - "mv -f" doesn't always work
     if [ -e "$trashfolder"/"$basefilename" ]; then
-        rm -rf "$trashfolder"/"$basefilename"
+        # need to move across file to old_trash_versions/
+
+        # verify backup in trash/trash_old_versions/ does not exist already
+        if [ -e "$backupdate" ]; then
+            echo "$backupdate already exists"
+            exit 1
+        fi
+
+        echo 1234
+        echo "$trashfolder"
+        echo "$basefilename"
+
+        mv "$trashfolder"/"$basefilename" "$backupdate"
+        echo 234
     fi
+
     # mv across file to trash
     mv "$fullfilename" "$trashfolder"
     
