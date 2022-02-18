@@ -101,12 +101,7 @@ for filename in "$@"; do
             exit 1
         fi
 
-        echo 1234
-        echo "$trashfolder"
-        echo "$basefilename"
-
         mv "$trashfolder"/"$basefilename" "$backupdate"
-        echo 234
     fi
 
     # mv across file to trash
