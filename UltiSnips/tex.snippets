@@ -79,8 +79,6 @@ snippet preuni "preamble-project" b
 
 \hyphenpenalty=750
 
-\bibliographystyle{ecta}
-
 %Date stuff:
 \usepackage{datetime}
 \newdateformat{monthyeardate}{%
@@ -107,6 +105,7 @@ snippet preuni "preamble-project" b
 
     % \cref{eq1,eq2} yields equation 1, and 2
     \newcommand{\creflastconjunction}{, and\nobreakspace}
+
     \bibliographystyle{bostonfed}
 }{
     \def\percent{\% }
@@ -114,6 +113,9 @@ snippet preuni "preamble-project" b
     \def\percentagepoints{p.p. }
     \def\percentagepointsperiod{p.p. }
     \def\percentagepointsnospace{p.p.}
+
+	\bibliographystyle{ecta}
+
 }
 
 % Boston Fed:%}}}
@@ -356,12 +358,13 @@ $0
 endsnippet
 snippet table "Table environment" b
 \begin{table}[${1:H}]
-	\centering
+\begin{center}
 	\caption{${2:caption}}
 	\label{tab:${3:label}}
 	\begin{${4:t}${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${5:c}}
 	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
 	\end{$4${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+\end{center}
 \end{table}
 endsnippet
 snippet cases "begin{} / end{}" b
@@ -377,24 +380,26 @@ snippet incgr
 endsnippet
 snippet fig "Figure environment" b
 \begin{figure}[${2:H}]
-	${3:%}\centering
-	\caption{${4:caption}}
-	\label{fig:${4/(\w+)\.\w+/$1/}}
+\begin{center}
+	\caption{${3:caption}}
+	\label{fig:${3/(\w+)\.\w+/$1/}}
 	${0:${VISUAL}}
+\end{center}
 \end{figure}
 endsnippet
 snippet figgr "Figure environment" b
 \begin{figure}[${2:H}]
-	${3:%}\centering
-	\caption{${4:caption}}
-	\label{fig:${4/(\w+)\.\w+/$1/}}
-	\includegraphics[width=${5:0.8}\linewidth]{${6:name.ext}}
+\begin{center}
+	\caption{${3:caption}}
+	\label{fig:${3/(\w+)\.\w+/$1/}}
+	\includegraphics[width=${4:0.8}\linewidth]{${5:name.ext}}
 	${0:${VISUAL}}
+\end{center}
 \end{figure}
 endsnippet
 snippet 2fig "Figure environment" b
 \begin{figure}[${2:H}]
-	\centering
+\begin{center}
 	\begin{minipage}{.49\textwidth}
 		\centering
 		\includegraphics[width=${3:0.9}\linewidth]{${4:name.ext}}
@@ -407,11 +412,12 @@ snippet 2fig "Figure environment" b
 		\caption{${8:fig:}}
 		\label{fig:${7/(\w+)\.\w+/$1/}}
 	\end{minipage}
+\end{center}
 \end{figure}
 endsnippet
 snippet subfig "Figure environment" b
 \begin{figure}[${2:H}]
-	\centering
+\begin{center}
 	\caption{${3:fig:}}
 	\label{fig:${3/(\w+)\.\w+/$1/}}
 	\begin{subfigure}{.49\textwidth}
@@ -426,6 +432,7 @@ snippet subfig "Figure environment" b
 		\caption{${9:fig:}}
 		\label{fig:${8/(\w+)\.\w+/$1/}}
 	\end{subfigure}
+\end{center}
 \end{figure}
 endsnippet
 snippet lst "lst" b
