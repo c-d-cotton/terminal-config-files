@@ -121,4 +121,6 @@ cd - > /dev/null
 mkdir -p ~/.vim/misc/
 
 # link/copy across alias file
-linkorcopy "$projectdir"custom/filealias/filealias.sh "$vimfolder"misc/filealias.sh
+if [ -e "$projectdir"custom/filealias/filealias.sh ]; then
+    linkorcopy "$projectdir"custom/filealias/filealias.sh "$vimfolder"misc/filealias.sh
+fi
