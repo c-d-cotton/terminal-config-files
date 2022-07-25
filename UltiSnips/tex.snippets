@@ -99,6 +99,7 @@ snippet preuni "preamble-project" b
 \ifthenelse{\equal{\cdcfedpaperformatting}{1}}{
     \def\percent{ percent }
     \def\percentnospace{ percent}
+    \def\percentagepoint{ percentage point }
     \def\percentagepoints{ percentage points }
     \def\percentagepointsperiod{ percentage points. }
     \def\percentagepointsnospace{ percentage points}
@@ -110,6 +111,7 @@ snippet preuni "preamble-project" b
 }{
     \def\percent{\% }
     \def\percentnospace{\%}
+    \def\percentagepoint{p.p. }
     \def\percentagepoints{p.p. }
     \def\percentagepointsperiod{p.p. }
     \def\percentagepointsnospace{p.p.}
@@ -236,7 +238,8 @@ ${1:title}
 }
 \author{Christopher D. Cotton \\\\ Federal Reserve Bank of Boston \thanks{\baselineskip=11pt
 The views expressed herein are those of the authors and do not indicate concurrence by the Federal Reserve Bank of Boston, the principals of the Board of Governors, or the Federal Reserve System.
-THANKS.
+Thank you to COMPLETE RAS for excellent research assistance.
+I am grateful to COMPLETE ECONOMISTS and seminar participants at UNIVERSITIES for helpful comments and discussions.
 }}
 \date{\today}
 \maketitle
@@ -248,7 +251,9 @@ ABSTRACT
 
 \end{abstract}
 
-\vspace{120pt}
+\vspace*{\fill}
+\textbf{JEL Codes: COMPLETE}
+
 \pagebreak
 \addtocounter{page}{-1}
 % Titlepage:%}}}1
