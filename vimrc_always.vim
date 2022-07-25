@@ -379,7 +379,8 @@ nnoremap <Leader>a :call ChangeProjectDir()<CR>
 
 " LATEX VIEW PDF:{{{2
 " to set specify something like
-" let g:pdftexviewer == "skim_forwardsearch"
+" let g:pdftexviewer="skim_forwardsearch"
+" let g:pdftexviewer="okular_forwardsync"
 function! PdfTex()
 
     let extension = fnameescape(expand("%:e"))
