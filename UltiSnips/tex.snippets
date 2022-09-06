@@ -19,6 +19,7 @@ snippet preuni "preamble-project" b
 \usepackage{bm} %\bm{1} bold font 1
 \usepackage{bbm} %\mathbbm{1} bold font 2
 \usepackage{booktabs} % includes toprule which is used in statsmodels/pandas to_latex commands
+\usepackage{chngcntr} % add Table A1 to appendix 
 \usepackage{color}
 \usepackage{enumitem} % allows to resume list
 \usepackage{float} %\begin{figure}[placement specifier] [H]-def. here,[h]-about here
@@ -87,7 +88,7 @@ snippet preuni "preamble-project" b
 
 % % removing brackets around cleveref equations
 % % see: https://tex.stackexchange.com/questions/228448/removing-the-brackets-around-equation-numbering
-\creflabelformat{equation}{#2#1#3}
+% \creflabelformat{equation}{#2#1#3}
 % Formatting:%}}}
 
 % Misc:%{{{
@@ -97,24 +98,22 @@ snippet preuni "preamble-project" b
 % Boston Fed:%{{{
 \def\cdcfedpaperformatting{0}
 \ifthenelse{\equal{\cdcfedpaperformatting}{1}}{
-    \def\percent{ percent }
-    \def\percentnospace{ percent}
-    \def\percentagepoint{ percentage point }
-    \def\percentagepoints{ percentage points }
-    \def\percentagepointsperiod{ percentage points. }
-    \def\percentagepointsnospace{ percentage points}
+    \def\percent{ percent}
+    \def\percentagepoint{ percentage point}
+    \def\percentagepointperiod{ percentage point.}
+    \def\percentagepoints{ percentage points}
+    \def\percentagepointsperiod{ percentage points.}
 
     % \cref{eq1,eq2} yields equation 1, and 2
     \newcommand{\creflastconjunction}{, and\nobreakspace}
 
     \bibliographystyle{bostonfed}
 }{
-    \def\percent{\% }
-    \def\percentnospace{\%}
-    \def\percentagepoint{p.p. }
-    \def\percentagepoints{p.p. }
+    \def\percent{\%}
+    \def\percentagepoint{p.p.}
+    \def\percentagepointperiod{p.p.}
+    \def\percentagepoints{p.p.}
     \def\percentagepointsperiod{p.p. }
-    \def\percentagepointsnospace{p.p.}
 
 	\bibliographystyle{ecta}
 
@@ -133,6 +132,11 @@ snippet preuni "preamble-project" b
 $0
 
 % \bibliography{latex-config_sh/standard.bib}
+% \appendix
+% \appendixpage
+% \counterwithin{equation}{section}
+% \counterwithin{figure}{section}
+% \counterwithin{table}{section}
 \end{document}
 endsnippet
 
@@ -251,8 +255,11 @@ ABSTRACT
 
 \end{abstract}
 
-\vspace*{\fill}
-\textbf{JEL Codes: COMPLETE}
+\textit{JEL Codes: JELCODES\\
+Keywords: KEYWORDS}
+% E43: Interest Rates: Determination, Term Structure, and Effects
+% E52: Monetary Policy
+% E58: Central Banks and their Policies
 
 \pagebreak
 \addtocounter{page}{-1}
