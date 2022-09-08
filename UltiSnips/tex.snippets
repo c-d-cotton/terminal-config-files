@@ -25,7 +25,6 @@ snippet preuni "preamble-project" b
 \usepackage{float} %\begin{figure}[placement specifier] [H]-def. here,[h]-about here
 \usepackage{geometry} %[a4paper,landscape]
 \usepackage{graphicx} %\begin{figure}\includegraphics[width=110mm]{name.jpg}
-\usepackage{ifthen} % get \ifthenelse command
 \usepackage{longtable} % only used in highfreq/summary.tex
 \usepackage{natbib}
 \usepackage{setspace} %\onehalfspacing etc.
@@ -97,7 +96,7 @@ snippet preuni "preamble-project" b
 
 % Boston Fed:%{{{
 \def\cdcfedpaperformatting{0}
-\ifthenelse{\equal{\cdcfedpaperformatting}{1}}{
+\ifnum\cdcfedpaperformatting=1
     \def\percent{ percent}
     \def\percentagepoint{ percentage point}
     \def\percentagepointperiod{ percentage point.}
@@ -108,7 +107,7 @@ snippet preuni "preamble-project" b
     \newcommand{\creflastconjunction}{, and\nobreakspace}
 
     \bibliographystyle{bostonfed}
-}{
+\else
     \def\percent{\%}
     \def\percentagepoint{p.p.}
     \def\percentagepointperiod{p.p.}
@@ -117,7 +116,7 @@ snippet preuni "preamble-project" b
 
 	\bibliographystyle{ecta}
 
-}
+\fi
 
 % Boston Fed:%}}}
 
