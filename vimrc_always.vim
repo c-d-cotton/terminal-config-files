@@ -350,6 +350,32 @@ endfun
 command! PDFLATEX call PDFLATEX()
 nnoremap <silent> <Leader>lp <Esc>:PDFLATEX<CR>
 
+fun! XELATEX()
+    if &ft=='tex'
+        cd %:p:h
+        let execstr = "!xelatex " . shellescape(expand("%:t:r"))
+        exec execstr
+        cd -
+    else
+        echo "this is not a tex file"
+    endif
+endfun
+command! XELATEX call XELATEX()
+nnoremap <silent> <Leader>lx <Esc>:XELATEX<CR>
+
+fun! LUALATEX()
+    if &ft=='tex'
+        cd %:p:h
+        let execstr = "!lualatex " . shellescape(expand("%:t:r"))
+        exec execstr
+        cd -
+    else
+        echo "this is not a tex file"
+    endif
+endfun
+command! LUALATEX call LUALATEX()
+nnoremap <silent> <Leader>ll <Esc>:LUALATEX<CR>
+
 fun! BIBTEX()
     if &ft=='tex'
         cd %:p:h
