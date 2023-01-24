@@ -95,7 +95,7 @@ snippet preuni "preamble-project" b
 % Misc:%}}}
 
 % Boston Fed:%{{{
-\def\cdcfedpaperformatting{0}
+\def\cdcfedpaperformatting{1}
 \ifnum\cdcfedpaperformatting=1
     \def\percent{ percent}
     \def\percentagepoint{ percentage point}
@@ -131,11 +131,11 @@ snippet preuni "preamble-project" b
 $0
 
 % \bibliography{latex-config_sh/standard.bib}
-% \appendix
-% \appendixpage
-% \counterwithin{equation}{section}
-% \counterwithin{figure}{section}
-% \counterwithin{table}{section}
+\appendix
+\appendixpage
+\counterwithin{equation}{section}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
 \end{document}
 endsnippet
 
