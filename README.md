@@ -3,11 +3,11 @@ Basic code to help me set up a terminal to my liking on UNIX.
 
 # Setup Terminal
 ## Setup Submodules
-Run setup_submodules.sh to add in required submodules. Needed to run setup_vimfiles.sh
+Run setup_submodules.sh to add in required submodules.
 
 ## How to Run
 Two choices over what to run:
-- setup.sh: Runs everything (including setting up vimfiles). Probably makes sense to run on any Unix install. May not make sense to run on Windows since it clutters up the home directory with observable dot files.
+- setup.sh: Runs everything except setting vimfiles. Probably makes sense to run on any Unix install. May not make sense to run on Windows since it clutters up the home directory with observable dot files.
 - setup_vimfiles.sh: Only setups up vimfiles. Probably only makes sense to run on Windows when I only want to set up vim.
 
 When running both setup.sh and setup_vimfiles.sh, I need to specify whether I want to link or copy across the files. To do this, I have to include either the necessary argument "link" or "copy", so I would run:
