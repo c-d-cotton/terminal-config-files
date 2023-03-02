@@ -60,10 +60,6 @@ fi
 # alldirs backup:}}}
 
 # create zips:{{{
-if [ ! -d "$backupzipfolder" ]; then
-    echo "$backupzipfolder in custom/backupzipfolder.txt does not exist"
-    exit 1
-fi
 
 # only do daily and 10day zip backups if not limited backups and have a separate zip folder
 # otherwise do monthly zip backup
@@ -78,7 +74,7 @@ else
 fi
 
 
-# now do zip backup for code
+# now do zip backup for dirs
 if [ $limitedbackups == 0 ] && [ $separatezipfolder == 1 ]; then
     "$pythonpath" "$projectdir"submodules/regbackup/run/copyziplatest.py ~/temp/regbackup/dirs/d1/ "$backupzipfolder"/dirs/d1zip/ --maxbackups 12
 

@@ -65,6 +65,9 @@ If I have defined terminal-config-files/custom/gitdir/rootdirs.txt (a list of fo
 - gitallpull: Pull all changes for projects
 - gitallpush: Push all changes for projects
 
+Crontab:
+I added a crontab_example.sh file. If I want to run the regbackup functions automatically, I can just run "crontab -e" and then copy this across.
+
 # Vim Submodules
 To install Vim submodules on a Unix shell run:
 ```
