@@ -5,7 +5,10 @@ import os
 from pathlib import Path
 import sys
 
-__projectdir__ = Path(os.path.dirname(os.path.realpath(__file__)) + '/')
+try:
+    __projectdir__ = Path(os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + relativetoprojectdir))
+except NameError:
+    __projectdir__ = Path(os.path.abspath(""))
 
 endsnippet
 
