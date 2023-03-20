@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 try:
-    __projectdir__ = Path(os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + relativetoprojectdir))
+    __projectdir__ = Path(os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + "/"))
 except NameError:
     __projectdir__ = Path(os.path.abspath(""))
 
@@ -35,5 +35,4 @@ parser.add_argument("${1:name i.e. --}", action = 'store_true')
 args=parser.parse_args()
 #End argparse:}}}
 endsnippet
-
 

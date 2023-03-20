@@ -145,8 +145,125 @@ endsnippet
 snippet prerev "preamble-simple" b
 % TEX_REVIEW_PREAMBLE_START.%{{{
 \documentclass{article}
-\def\cdcprefulloptions{1}
-\input{\string~/Dropbox/work/persdrop/latex-config-sh/preamble.tex}
+
+% Packages:%{{{
+\usepackage{caption}
+\usepackage{mdframed}
+\usepackage[bottom]{footmisc} %footnotes at bottom of page
+\usepackage{titlesec} %adjust paragraphs
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{appendix} %\appendix \appendixpage
+\usepackage{bm} %\bm{1} bold font 1
+\usepackage{bbm} %\mathbbm{1} bold font 2
+\usepackage{booktabs} % includes toprule which is used in statsmodels/pandas to_latex commands
+\usepackage{chngcntr} % add Table A1 to appendix 
+\usepackage{color}
+\usepackage{enumitem} % allows to resume list
+\usepackage{float} %\begin{figure}[placement specifier] [H]-def. here,[h]-about here
+\usepackage{geometry} %[a4paper,landscape]
+\usepackage{graphicx} %\begin{figure}\includegraphics[width=110mm]{name.jpg}
+\usepackage{longtable} % only used in highfreq/summary.tex
+\usepackage{natbib}
+\usepackage{setspace} %\onehalfspacing etc.
+\usepackage{subcaption} % allows subfigure
+\usepackage{tikz}
+\usepackage[numbib]{tocbibind} % tocbibind makes Bibliography a numbered section
+\usepackage{url} %\url{}
+\usepackage{verbatim} %\begin{comment}
+
+
+% end packages
+\usepackage{hyperref}
+\usepackage[noabbrev]{cleveref} %\cref, also loaded in environment
+
+% Packages:%}}}
+
+% Theorem definitions:%{{{
+
+% Standard style:
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}{Assumption} % decided want different counter for this normally
+\newtheorem{remark}[theorem]{Remark}
+
+% Definition Style:
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+% \newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{exercise}[theorem]{Exercise}
+%}}}
+
+% Formatting:%{{{
+%General Spacing
+\newcommand{\mar}{0.9in} %for geometry command
+% needs geometry package
+\geometry{verbose,letterpaper,nohead,tmargin=\mar,bmargin=\mar,lmargin=\mar,rmargin=\mar,headheight=0in,headsep=0in,footskip=0.25in}
+
+% \def\bodyspacing{\singlespacing}
+\def\bodyspacing{\onehalfspacing}
+% \def\bodyspacing{\doublespacing}
+\bodyspacing
+
+\usepackage{palatino}
+\usepackage[T1]{fontenc} % I think this is necessary for accents with palatino
+
+% Paragraphs:
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{10pt plus 1pt minus 1pt}
+
+\hyphenpenalty=750
+
+% line breaks for urls in bibliographies
+\def\UrlBreaks{\do\/\do-}
+
+%Date stuff:
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH] \THEYEAR}
+
+
+% % removing brackets around cleveref equations
+% % see: https://tex.stackexchange.com/questions/228448/removing-the-brackets-around-equation-numbering
+% \creflabelformat{equation}{#2#1#3}
+% Formatting:%}}}
+
+% Misc:%{{{
+\synctex=1 % makes it easier to read pdfs from vim (text editor)
+% Misc:%}}}
+
+% Boston Fed:%{{{
+\def\cdcfedpaperformatting{1}
+\ifnum\cdcfedpaperformatting=1
+    \def\percent{ percent}
+    \def\percentagepoint{ percentage point}
+    \def\percentagepointperiod{ percentage point.}
+    \def\percentagepoints{ percentage points}
+    \def\percentagepointsperiod{ percentage points.}
+
+    % \cref{eq1,eq2} yields equation 1, and 2
+    \newcommand{\creflastconjunction}{, and\nobreakspace}
+
+    \bibliographystyle{bostonfed}
+\else
+    \def\percent{\%}
+    \def\percentagepoint{p.p.}
+    \def\percentagepointperiod{p.p.}
+    \def\percentagepoints{p.p.}
+    \def\percentagepointsperiod{p.p. }
+
+	\bibliographystyle{ecta}
+
+\fi
+
+% Boston Fed:%}}}
+
 % TEX_REVIEW_PREAMBLE_END.%}}}
 % TEX_REVIEW_TITLE_START.%{{{
 \begin{document}
