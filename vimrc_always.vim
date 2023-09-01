@@ -37,11 +37,6 @@ noremap <Leader>jq :ScreenQuit<CR>
 let g:ScreenShellHeight=15
 
 "TMUX-NAVIGATOR:{{{2
-" Tmux shortcuts in insert mode:
-inoremap <C-h> <Esc>:TmuxNavigateLeft<cr>
-inoremap <C-j> <Esc>:TmuxNavigateDown<cr>
-inoremap <C-k> <Esc>:TmuxNavigateUp<cr>
-inoremap <C-l> <Esc>:TmuxNavigateRight<cr>
 
 "Save when leaving vim window into tmux:
 let g:tmux_navigator_save_on_switch = 1
@@ -452,6 +447,12 @@ endfunction
 nmap <Leader>lv :call PdfTex()<CR>
 
 " MAPPINGS AND SHORTCUTS:{{{1
+" GENERAL:{{{2
+" Tmux shortcuts in insert mode:
+inoremap <C-h> <Esc>:TmuxNavigateLeft<cr>
+inoremap <C-j> <Esc>:TmuxNavigateDown<cr>
+inoremap <C-k> <Esc>:TmuxNavigateUp<cr>
+inoremap <C-l> <Esc>:TmuxNavigateRight<cr>
 
 " Insert current path and file:
 :inoremap <Leader>wcd <C-R>=fnameescape(expand("%:p:h"))<CR>
@@ -476,3 +477,35 @@ nnoremap <Leader>h :noh<cr>
 :cnoremap <C-S-b> <S-Left>
 :cnoremap <C-S-f> <S-Right>
 
+" JUPYTER HUB:{{{2
+" can't do ctrl-w in chrome
+nnoremap <Leader>wh <C-w>h<CR>
+nnoremap <Leader>wj <C-w>j<CR>
+nnoremap <Leader>wk <C-w>k<CR>
+nnoremap <Leader>wl <C-w>l<CR>
+nnoremap <Leader>wH <C-w>H<CR>
+nnoremap <Leader>wJ <C-w>J<CR>
+nnoremap <Leader>wK <C-w>K<CR>
+nnoremap <Leader>wL <C-w>L<CR>
+nnoremap <Leader>w= <C-w>=<CR>
+nnoremap <Leader>wq <C-w>q<CR>
+nnoremap <Leader>ws <C-w>s<CR>
+nnoremap <Leader>wv <C-w>v<CR>
+nnoremap <Leader>ww <C-w>w<CR>
+nnoremap <Leader>wx <C-w>x<CR>
+
+" can't do Ctrl-i in jupyter hub
+nnoremap <Leader>o <C-O><CR>
+nnoremap <Leader>i <C-I><CR>
+
+" can't do Ctrl-v (to start visual mode block of text)
+nnoremap <Leader>v <C-V>
+
+" can't do Ctrl-p/Ctrl-n in chrome
+inoremap <Leader>n <C-n>
+inoremap <Leader>p <C-p>
+
+" mappings that seem ok:
+" <C-]>: Escape
+" <C-h/j/k/l>: move around
+" <C-u/d>: up/down
