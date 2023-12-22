@@ -123,6 +123,8 @@ cnoremap <C-f> <Right>
 "COLORS:{{{2
 " Adding colours to Vim:
 set t_Co=256
+" means that colors show as dark on light background
+set background=light
 
 "COMMENTS:{{{2
 " Remove auto-commenting of next line:
