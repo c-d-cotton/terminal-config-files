@@ -504,8 +504,9 @@ nnoremap <Leader>i <C-I><CR>
 nnoremap <Leader>v <C-V>
 
 " can't do Ctrl-p/Ctrl-n in chrome
-inoremap <Leader>n <C-n>
-inoremap <Leader>p <C-p>
+" annoying when writing new lines so turned off
+" inoremap <Leader>n <C-n>
+" inoremap <Leader>p <C-p>
 
 " mappings that seem ok:
 " <C-]>: Escape
