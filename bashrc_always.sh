@@ -84,6 +84,11 @@ case $- in
         ;;
 esac
 
+# PYTHON:{{{2
+# prevent python from loading locally installed packages
+# useful to ensure replicability in python
+export PYTHONNOUSERSITE=1
+
 #MISC:{{{2
 #Add extglob i.e. !(large)
 shopt -s extglob
