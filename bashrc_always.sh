@@ -251,11 +251,17 @@ pathmv2() {
 # APPLICATION SPECIFIC FUNCTIONS:{{{1
 #GIT/GITHUB:{{{2
 gitra () {
+    # this removes files that have been deleted from being tracked
     echo 'reset'
     git reset
+
     # this is necessary if I'm including a file that was in my gitignore or excluding a file that was not in my gitingore
     # needs to come after git reset
-    git rm -r --cached .
+    # however I turned it off as it deleted all the submodules in a common project so I figured it was dangerous to run
+    # I can add a file back if I do git rm -r --cached FILENAME
+    # git rm -r --cached .
+
+    # this adds all the local files
     echo 'add'
     git add .
 }
